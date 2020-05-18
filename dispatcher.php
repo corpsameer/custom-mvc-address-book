@@ -25,10 +25,10 @@ class Dispatcher {
   *
   */
   public function loadController() {
-    $name = $this->request->controller;
+    $name = ucfirst($this->request->controller);
     $file = ROOT . 'Controllers/' . $name . '.php';
 
-    $errorName = 'pageNotFound';
+    $errorName = 'Pagenotfound';
     $errorFile = ROOT . 'Controllers/' . $errorName . '.php';
 
     if (file_exists($file)) {

@@ -24,7 +24,7 @@ class Controller {
   /**
   * Renders the view of the requested file
   *
-  * @param array $filename View to be rendered
+  * @param string $filename View to be rendered
   *
   */
   function renderView($filename) {
@@ -43,9 +43,22 @@ class Controller {
   }
 
   /**
+  * Loads the required model
+  *
+  * @param string $filename Model to be loaded
+  *
+  */
+  function loadModel($filename) {
+    require(ROOT . "Models/" . $filename . '_model.php');
+    $model = new $filename();
+
+    return $model;
+  }
+
+  /**
   * Sanitizes form data to remove special and html chars from form data
   *
-  * @param array $data Data to be sanitized
+  * @param string $data Data to be sanitized
   *
   */
   private function santizeData($data) {

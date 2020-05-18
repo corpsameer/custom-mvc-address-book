@@ -4,17 +4,30 @@ class Database {
   /**
   * @property string $conn Connection string for PDO database connecion
   */
-  private static $conn = null;
+  public $conn;
 
   /**
-  * Static function to get PDO database connection string
+  * @property object $dbInstance DB instance object
   */
-  public static function getConn() {
-    if(is_null(self::$conn)) {
-      self::$conn = new PDO("mysql:host=localhost;dbname=todo_php", 'root', '');
+  private static $dbInstance;
+
+  /**
+  * Constructor to create PDO connection string to database
+  */
+  private function __construct() {
+    $this->conn = new PDO("mysql:host=localhost;dbname=address_book", 'root', '');
+  }
+
+  /**
+  * Static function to create database instance using singleton pattern
+  */
+  public static function getDbInstance() {
+    if(!isset(self::$dbInstance)) {
+      $object = __CLASS__;
+      self::$dbInstance = new $object;
     }
 
-    return self::$conn;
+    return self::$dbInstance;
   }
 }
 ?>

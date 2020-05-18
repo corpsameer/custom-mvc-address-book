@@ -1,5 +1,5 @@
 <?php
-class pageNotFound extends Controller {
+class Pagenotfound extends Controller {
   /**
   * Shows 404 page not found error if an invalid page request is made
   *
