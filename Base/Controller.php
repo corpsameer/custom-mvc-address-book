@@ -47,6 +47,7 @@ class Controller {
   *
   * @param string $filename Model to be loaded
   *
+  * @return object
   */
   function loadModel($filename) {
     require(ROOT . "Models/" . $filename . '_model.php');
@@ -60,8 +61,9 @@ class Controller {
   *
   * @param string $data Data to be sanitized
   *
+  * @return string
   */
-  private function santizeData($data) {
+  protected function santizeData($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -73,11 +75,14 @@ class Controller {
   *
   * @param array $form Form data
   *
+  * @return array
   */
   protected function sanitizeForm($form) {
     foreach ($form as $key => $value) {
       $form[$key] = $this->santizeData($value);
     }
+
+    return $form;
   }
 }
 ?>

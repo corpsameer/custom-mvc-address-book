@@ -15,3 +15,5 @@ CREATE TABLE `address_book`.`city` (
   `city_name` VARCHAR(50) NOT NULL ,
   PRIMARY KEY (`city_id`)
 ) ENGINE = InnoDB;
+
+ALTER TABLE `address_book`.`city` ADD UNIQUE (`city_name`);

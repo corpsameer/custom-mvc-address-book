@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Contacts>
+  <Contact id="2">
+    <contact_id>2</contact_id>
+    <contact_first_name>John</contact_first_name>
+    <contact_last_name>Doe</contact_last_name>
+    <contact_full_name>John Doe</contact_full_name>
+    <contact_email>johndoe@gmail.com</contact_email>
+    <contact_street>Oklahoma</contact_street>
+    <contact_city_id>9</contact_city_id>
+    <contact_zip_code>dssfsgfw4</contact_zip_code>
+    <city_id>9</city_id>
+    <city_name>Mumbai</city_name>
+  </Contact>
+  <Contact id="3">
+    <contact_id>3</contact_id>
+    <contact_first_name>Lorem</contact_first_name>
+    <contact_last_name>Ipsum</contact_last_name>
+    <contact_full_name>Lorem Ipsum</contact_full_name>
+    <contact_email>loripsum@gmail.com</contact_email>
+    <contact_street>Extraction</contact_street>
+    <contact_city_id>13</contact_city_id>
+    <contact_zip_code>178t2j</contact_zip_code>
+    <city_id>13</city_id>
+    <city_name>Baroda</city_name>
+  </Contact>
+  <Contact id="1">
+    <contact_id>1</contact_id>
+    <contact_first_name>Rishab</contact_first_name>
+    <contact_last_name>Goyal</contact_last_name>
+    <contact_full_name>Rishab Goyal</contact_full_name>
+    <contact_email>rishabgoyaldev@gmail.com</contact_email>
+    <contact_street>my street</contact_street>
+    <contact_city_id>16</contact_city_id>
+    <contact_zip_code>5553</contact_zip_code>
+    <city_id>16</city_id>
+    <city_name>Agra</city_name>
+  </Contact>
+</Contacts>

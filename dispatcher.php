@@ -17,6 +17,10 @@ class Dispatcher {
 
     $controller = $this->loadController();
 
+    if (strpos($this->request->action, "?p=") !== false || $this->request->action == '') {
+      $this->request->action = 'index';
+    }
+
     call_user_func_array([$controller, $this->request->action], $this->request->params);
   }
 
