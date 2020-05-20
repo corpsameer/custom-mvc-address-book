@@ -38,6 +38,8 @@ function loadContacts() {
       // Load data in contact table
       table.bootstrapTable('load', records);
     } else {
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+
       // Show alert if some error occurs
       showAlert("contactPageAlert", "danger", response.message);
     }
@@ -77,6 +79,7 @@ function deleteContact(contactId) {
     // Delete request to delete contact
     $.get("/contacts/removeContact/"+contactId, function(response) {
       response = JSON.parse(response);
+      $("html, body").animate({ scrollTop: 0 }, "slow");
 
       if (response.status === 200) {
         // Show success alert message if contact is deleted successfully
@@ -117,6 +120,7 @@ $('#newContactForm').submit(function(e) {
   // Post request to add/edit contact data
   $.post(url, postData, function(response) {
     response = JSON.parse(response);
+    $('#newContact').animate({ scrollTop: 0 }, 'slow');
 
     if (response.status === 200) {
       if (contactId == 0) {
@@ -160,8 +164,5 @@ function showAlert(alertId, alertClass, alertMessage) {
 
 // Clear form fields
 function clearForm(formId) {
-  $("#"+formId)
-    .find("input,select")
-       .val('')
-       .end();
+  $("#"+formId).find("input,select").val('').end();
 }

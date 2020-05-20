@@ -1,13 +1,21 @@
 <?php
 class Contacts extends Controller {
   /**
+  * @property object $contactModel Contact model class object
+  */
+  private $contactModel;
+
+  function __construct() {
+    $this->contactModel = $this->loadModel('Contact');
+  }
+  /**
   * Shows list of all contacts in the address book
   *
   */
   function index() {
-    $city = $this->loadModel('City');
+    $cityModel = $this->loadModel('City');
 
-    $data['cities'] = $city->getAllCities();
+    $data['cities'] = $cityModel->getAllCities();
 
     $this->setData($data);
     $this->renderView("index");
@@ -24,10 +32,9 @@ class Contacts extends Controller {
       "status" => INTERNAL_SERVER_ERROR,
       "message" => "Server Error!! Please try again"
     ];
-    $contact = $this->loadModel('Contact');
     $contactId = $this->santizeData($contactId);
 
-    $contactDetails = $contact->getContact($contactId);
+    $contactDetails = $this->contactModel->getContact($contactId);
 
     $response = [
       "status" => SUCCESS_REQUEST,
@@ -51,11 +58,10 @@ class Contacts extends Controller {
     $isValidRequest = $this->checkPostFields($postVars);
 
     if (empty($isValidRequest)) {
-      $contact = $this->loadModel('Contact');
       $postVars = $this->sanitizeForm($postVars);
       $postVars['contact_full_name'] = $postVars['contact_first_name'] . " " . $postVars['contact_last_name'];
 
-      $newContact = $contact->addContact($postVars);
+      $newContact = $this->contactModel->addContact($postVars);
 
       if ($newContact) {
         $response = [
@@ -95,12 +101,11 @@ class Contacts extends Controller {
       $isValidRequest = $this->checkPostFields($postVars);
 
       if (empty($isValidRequest)) {
-        $contact = $this->loadModel('Contact');
         $postVars = $this->sanitizeForm($postVars);
         $postVars['contact_full_name'] = $postVars['contact_first_name'] . " " . $postVars['contact_last_name'];
         $contactId = $this->santizeData($contactId);
 
-        $editContact = $contact->updateContact($contactId, $postVars);
+        $editContact = $this->contactModel->updateContact($contactId, $postVars);
 
         if ($editContact) {
           $response = [
@@ -138,10 +143,9 @@ class Contacts extends Controller {
         "message" => "Contact id is required."
       ];
     } else {
-      $contact = $this->loadModel('Contact');
       $contactId = $this->santizeData($contactId);
 
-      $removeContact = $contact->deleteContact($contactId);
+      $removeContact = $this->contactModel->deleteContact($contactId);
 
       if ($removeContact) {
         $response = [
@@ -159,8 +163,7 @@ class Contacts extends Controller {
   *
   */
   function exportToJson() {
-    $contact = $this->loadModel('Contact');
-    $contacts = $contact->getContact();
+    $contacts = $this->contactModel->getContact();
     $json = "";
 
     if (!empty($contacts)) {
@@ -186,8 +189,7 @@ class Contacts extends Controller {
   *
   */
   function exportToXml() {
-    $contact = $this->loadModel('Contact');
-    $contacts = $contact->getContact();
+    $contacts = $this->contactModel->getContact();
 
     if (!empty($contacts)) {
       $xml = new DOMDocument();
